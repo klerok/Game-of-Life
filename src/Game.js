@@ -9,10 +9,17 @@ class Game extends React.Component {
   render() {
     return (
       <div>
-        <div className="board" style={{ width: WIDTH, height: HEIGHT }}></div>
+        <div
+          className="board"
+          style={{
+            width: WIDTH,
+            height: HEIGHT,
+            backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px`,
+          }}
+        ></div>
       </div>
     );
   }
 }
 
-export default Game
+export default Game;
