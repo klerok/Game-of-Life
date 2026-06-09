@@ -1,3 +1,11 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  background: #08080c;
+  color: #e8ecf1;
+}
+.App h1 {
+  margin: 24px 0 0;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
