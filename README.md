@@ -1,3 +1,5 @@
+[![Maintainability](https://qlty.sh/gh/klerok/projects/Game-of-Life/maintainability.svg)](https://qlty.sh/gh/klerok/projects/Game-of-Life)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
