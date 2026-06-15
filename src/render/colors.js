@@ -1,4 +1,4 @@
-import { MAX_AGE_COLOR } from "./constants";
+import { MAX_AGE_COLOR } from "../game/constants";
 
 export function ageToColor(age, maxAge = MAX_AGE_COLOR) {
   if (age <= 0) return null;

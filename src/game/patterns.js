@@ -1,3 +1,6 @@
+import { BOARD_CENTER } from "./constants";
+import { stampPatternAtCenter } from "./board";
+
 function pattern(name, cells, width, height) {
   return { name, cells, width, height };
 }
@@ -92,4 +95,10 @@ export function listPatterns() {
 
 export function getPattern(key) {
   return PATTERNS[key] ?? null;
+}
+
+export function stampPatternByKey(board, patternKey) {
+  const pattern = getPattern(patternKey);
+  if (!pattern) return null;
+  return stampPatternAtCenter(board, pattern, BOARD_CENTER.x, BOARD_CENTER.y);
 }

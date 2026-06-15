@@ -1,31 +1,19 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { clearBoard, countLive, randomizeBoard, setCell } from "../game/board";
 import {
-  clearBoard,
-  countLive,
-  randomizeBoard,
-  setCell,
-  stampPatternAtCenter,
-} from "../game/board";
-import {
-  CELLS_COLS,
-  CELLS_ROWS,
   DEFAULT_GRID_MODE,
   DEFAULT_INTERVAL_MS,
   DEFAULT_RULESET,
 } from "../game/constants";
-import { getPattern } from "../game/patterns";
-import { step } from "../game/rules";
+import { stampPatternByKey } from "../game/patterns";
 import { getRuleset } from "../game/rulesets";
-import {
-  createDefaultGameState,
-  loadGameState,
-  saveGameState,
-} from "../game/storage";
+import { saveGameState } from "../game/storage";
+import { buildPersistPayload, getInitialGameState } from "./helpers/gameState";
 import { usePopulationHistory } from "./usePopulationHistory";
+import { runStep } from "../game/simulation";
 
 export function useGame() {
-  const saved = loadGameState();
-  const initial = saved ?? createDefaultGameState();
+  const initial = getInitialGameState();
 
   const [board, setBoard] = useState(initial.board);
   const [generation, setGeneration] = useState(initial.generation ?? 0);
@@ -52,7 +40,15 @@ export function useGame() {
   }, [isRunning]);
 
   useEffect(() => {
-    saveGameState({ board, generation, intervalMs, rulesetKey, gridMode });
+    saveGameState(
+      buildPersistPayload({
+        board,
+        generation,
+        intervalMs,
+        rulesetKey,
+        gridMode,
+      })
+    );
   }, [board, generation, intervalMs, rulesetKey, gridMode]);
 
   useEffect(() => {
@@ -60,69 +56,67 @@ export function useGame() {
   }, [generation, population, push]);
 
   useEffect(() => {
-    if (!isRunning) return undefined;
-
-    const id = setInterval(() => {
-      if (!isRunningRef.current) return;
-      setBoard((b) => step(b, getRuleset(rulesetKey), { gridMode }));
-      setGeneration((g) => g + 1);
-    }, Number(intervalMs) || DEFAULT_INTERVAL_MS);
-
-    return () => clearInterval(id);
+    if (isRunning) {
+      const id = setInterval(() => {
+        if (isRunningRef.current) {
+          setBoard((b) => runStep(b, rulesetKey, gridMode));
+          setGeneration((g) => g + 1);
+        }
+      }, Number(intervalMs) || DEFAULT_INTERVAL_MS);
+      return () => clearInterval(id);
+    }
   }, [isRunning, intervalMs, rulesetKey, gridMode]);
 
   const stop = useCallback(() => setIsRunning(false), []);
   const run = useCallback(() => setIsRunning(true), []);
 
   const stepOnce = useCallback(() => {
-    if (isRunning) return;
-    setBoard((b) => step(b, ruleset, { gridMode }));
-    setGeneration((g) => g + 1);
-  }, [isRunning, ruleset, gridMode]);
+    if (!isRunning) {
+      setBoard((b) => runStep(b, rulesetKey, gridMode));
+      setGeneration((g) => g + 1);
+    }
+  }, [isRunning, rulesetKey, gridMode]);
 
   const clear = useCallback(() => {
-    stop();
+    setIsRunning(false);
     setBoard((b) => clearBoard(b));
     setGeneration(0);
     reset(0);
-  }, [stop, reset]);
+  }, [reset]);
 
   const randomize = useCallback(() => {
-    stop();
+    setIsRunning(false);
     setBoard((b) => {
       const next = randomizeBoard(b);
       reset(countLive(next));
       return next;
     });
     setGeneration(0);
-  }, [stop, reset]);
+  }, [reset]);
 
   const paintAt = useCallback(
     (x, y, value) => {
-      if (isRunning) return;
-      setBoard((b) => setCell(b, x, y, value));
+      if (!isRunning) {
+        setBoard((b) => setCell(b, x, y, value));
+      }
     },
     [isRunning]
   );
 
   const applyPattern = useCallback(
     (key) => {
-      const pattern = getPattern(key);
-      if (!pattern) return;
-      stop();
+      setIsRunning(false);
       setBoard((b) => {
-        const next = stampPatternAtCenter(
-          b,
-          pattern,
-          Math.floor(CELLS_COLS / 2),
-          Math.floor(CELLS_ROWS / 2)
-        );
-        reset(countLive(next));
-        return next;
+        const next = stampPatternByKey(b, key);
+        if (next) {
+          reset(countLive(next));
+          setGeneration(0);
+          return next;
+        }
+        return b;
       });
-      setGeneration(0);
     },
-    [stop, reset]
+    [reset]
   );
 
   return {

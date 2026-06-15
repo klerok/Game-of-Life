@@ -17,3 +17,8 @@ export const GRID_MODES = {
 export const STORAGE_KEY = "life-game-state";
 export const MAX_AGE_COLOR = 20;
 export const POPULATION_HISTORY_LIMIT = 500;
+
+export const BOARD_CENTER = {
+  x: Math.floor(CELLS_COLS / 2),
+  y: Math.floor(CELLS_ROWS / 2),
+};

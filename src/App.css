@@ -5,7 +5,8 @@
   color: #e8ecf1;
 }
 .App h1 {
-  margin: 24px 0 0;
+  padding: 24px 16px;
+  margin: 0;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
