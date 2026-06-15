@@ -13,29 +13,29 @@ export default function Controls({
   onRulesetChange,
 }) {
   return (
-    <div className="life-controls">
-      <div className="life-controls__group">
+    <div className="lifeControls">
+      <div className="lifeControlsGroup">
         {isRunning ? (
-          <button type="button" className="life-btn" onClick={onStop}>
+          <button type="button" className="lifeBtn" onClick={onStop}>
             Stop
           </button>
         ) : (
           <>
             <button
               type="button"
-              className="life-btn life-btn--primary"
+              className="lifeBtn lifeBtnPrimary"
               onClick={onRun}
             >
               Run
             </button>
-            <button type="button" className="life-btn" onClick={onStep}>
+            <button type="button" className="lifeBtn" onClick={onStep}>
               Step
             </button>
           </>
         )}
         <button
           type="button"
-          className="life-btn"
+          className="lifeBtn"
           onClick={onClear}
           disabled={isRunning}
         >
@@ -43,7 +43,7 @@ export default function Controls({
         </button>
         <button
           type="button"
-          className="life-btn"
+          className="lifeBtn"
           onClick={onRandomize}
           disabled={isRunning}
         >
@@ -51,7 +51,7 @@ export default function Controls({
         </button>
       </div>
 
-      <label className="life-controls__field">
+      <label className="lifeControlsField">
         Speed
         <input
           type="range"
@@ -64,7 +64,7 @@ export default function Controls({
         <span>{intervalMs} ms</span>
       </label>
 
-      <label className="life-controls__field">
+      <label className="lifeControlsField">
         Rules
         <select
           value={rulesetKey}

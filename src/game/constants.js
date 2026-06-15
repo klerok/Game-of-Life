@@ -22,3 +22,5 @@ export const BOARD_CENTER = {
   x: Math.floor(CELLS_COLS / 2),
   y: Math.floor(CELLS_ROWS / 2),
 };
+
+export const HELP_SEEN_KEY = "life-lab-help-seen";

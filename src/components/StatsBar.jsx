@@ -5,7 +5,7 @@ export default function StatsBar({
   gridMode,
 }) {
   return (
-    <div className="life-stats">
+    <div className="lifeStats">
       <span>Generation: {generation}</span>
       <span>Alive: {population}</span>
       <span>{rulesetName}</span>

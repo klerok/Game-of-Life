@@ -28,8 +28,8 @@ export default function PopulationChart({ history }) {
   }, [history]);
 
   return (
-    <div className="life-chart">
-      <span className="life-chart__label">Population</span>
+    <div className="lifeChart">
+      <span className="lifeChartLabel">Population</span>
       <canvas ref={ref} width={WIDTH} height={HEIGHT} />
     </div>
   );

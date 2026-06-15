@@ -28,7 +28,7 @@ export default function Board({ board, isRunning, paintAt }) {
       ref={canvasRef}
       width={WIDTH}
       height={HEIGHT}
-      className={`life-board${isRunning ? " life-board--locked" : ""}`}
+      className={`lifeBoard${isRunning ? " lifeBoardLocked" : ""}`}
       {...pointerHandlers}
     />
   );

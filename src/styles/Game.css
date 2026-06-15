@@ -1,34 +1,71 @@
-.life-game {
+.lifeShell {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  padding: 0 16px 16px;
+}
+
+.lifeShellSpacer {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.lifeShellSide {
+  flex: 1 1 0;
+  min-width: 48px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 8px;
+}
+
+.lifeShellBtnHelp {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 50%;
+}
+
+.lifeGame {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  padding: 16px;
+  flex: 0 0 800px;
+  width: 800px;
+  max-width: 100%;
+  padding: 16px 0;
 }
 
-.life-board {
+.lifeBoard {
   display: block;
   border-radius: 8px;
   box-shadow: 0 0 32px rgba(62, 240, 211, 0.12);
   cursor: crosshair;
 }
 
-.life-board--locked {
+.lifeBoardLocked {
   cursor: not-allowed;
   opacity: 0.92;
 }
 
-.life-stats,
-.life-controls,
-.life-patterns,
-.life-toggle,
-.life-chart,
-.life-game__row {
+.lifeStats,
+.lifeControls,
+.lifePatterns,
+.lifeToggle,
+.lifeChart,
+.lifeGameRow {
   width: 800px;
   max-width: 100%;
 }
 
-.life-stats {
+.lifeStats {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -37,7 +74,7 @@
   font-size: 14px;
 }
 
-.life-controls {
+.lifeControls {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -45,13 +82,13 @@
   justify-content: center;
 }
 
-.life-controls__group {
+.lifeControlsGroup {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.life-controls__field {
+.lifeControlsField {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -59,7 +96,7 @@
   font-size: 14px;
 }
 
-.life-btn {
+.lifeBtn {
   background: #1a1a24;
   color: #e8ecf1;
   border: 1px solid #2a2a38;
@@ -68,48 +105,70 @@
   cursor: pointer;
 }
 
-.life-btn:hover:not(:disabled) {
+.lifeBtn:hover:not(:disabled) {
   border-color: #3ef0d3;
 }
 
-.life-btn:disabled {
+.lifeBtn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.life-btn--primary {
+.lifeBtnPrimary {
   background: #123c36;
   border-color: #3ef0d3;
 }
 
-.life-btn--active {
+.lifeBtnActive {
   border-color: #3ef0d3;
   color: #3ef0d3;
 }
 
-.life-btn--small {
+.lifeBtnSmall {
   padding: 6px 10px;
   font-size: 13px;
 }
 
-.life-patterns,
-.life-toggle,
-.life-game__row {
+.lifePatterns,
+.lifeToggle,
+.lifeGameRow {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
 }
 
-.life-patterns__label,
-.life-toggle__label,
-.life-chart__label {
+.lifePatternsLabel,
+.lifeToggleLabel,
+.lifeChartLabel {
   color: #8a93a3;
   font-size: 13px;
 }
 
-.life-chart canvas {
+.lifeChart canvas {
   display: block;
   width: 100%;
   border-radius: 6px;
+}
+
+@media (max-width: 900px) {
+  .lifeShell {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lifeShellSpacer {
+    display: none;
+  }
+
+  .lifeShellSide {
+    width: 800px;
+    max-width: 100%;
+    justify-content: flex-end;
+    order: 2;
+  }
+
+  .lifeGame {
+    order: 1;
+  }
 }

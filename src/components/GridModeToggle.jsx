@@ -2,12 +2,12 @@ import { GRID_MODES } from "../game/constants";
 
 export default function GridModeToggle({ gridMode, onChange, disabled }) {
   return (
-    <div className="life-toggle">
-      <span className="life-toggle__label">Grid</span>
+    <div className="lifeToggle">
+      <span className="lifeToggleLabel">Grid</span>
       <button
         type="button"
-        className={`life-btn${
-          gridMode === GRID_MODES.BOUNDED ? " life-btn--active" : ""
+        className={`lifeBtn${
+          gridMode === GRID_MODES.BOUNDED ? " lifeBtnActive" : ""
         }`}
         disabled={disabled}
         onClick={() => onChange(GRID_MODES.BOUNDED)}
@@ -16,8 +16,8 @@ export default function GridModeToggle({ gridMode, onChange, disabled }) {
       </button>
       <button
         type="button"
-        className={`life-btn${
-          gridMode === GRID_MODES.TOROIDAL ? " life-btn--active" : ""
+        className={`lifeBtn${
+          gridMode === GRID_MODES.TOROIDAL ? " lifeBtnActive" : ""
         }`}
         disabled={disabled}
         onClick={() => onChange(GRID_MODES.TOROIDAL)}
