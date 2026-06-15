@@ -18,8 +18,6 @@ export default function Game() {
   return (
     <>
       <div className="lifeShell">
-        <div className="lifeShellSpacer" aria-hidden="true" />
-
         <div className="lifeGame">
           <StatsBar
             generation={game.generation}

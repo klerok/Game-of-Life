@@ -1,21 +1,28 @@
 .lifeShell {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr min(800px, calc(100% - 32px)) 1fr;
+  column-gap: 16px;
+  align-items: start;
   width: 100%;
-  min-height: calc(100vh - 72px);
+  max-width: 100vw;
+  overflow-x: hidden;
   padding: 0 16px 16px;
 }
 
-.lifeShellSpacer {
-  flex: 1 1 0;
-  min-width: 0;
+.lifeGame {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 800px;
+  padding: 8px 0 0;
 }
 
 .lifeShellSide {
-  flex: 1 1 0;
-  min-width: 48px;
+  grid-column: 3;
+  min-width: 0;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -32,19 +39,10 @@
   border-radius: 50%;
 }
 
-.lifeGame {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  flex: 0 0 800px;
-  width: 800px;
-  max-width: 100%;
-  padding: 16px 0;
-}
-
 .lifeBoard {
   display: block;
+  max-width: 100%;
+  height: auto;
   border-radius: 8px;
   box-shadow: 0 0 32px rgba(62, 240, 211, 0.12);
   cursor: crosshair;
@@ -61,7 +59,7 @@
 .lifeToggle,
 .lifeChart,
 .lifeGameRow {
-  width: 800px;
+  width: min(800px, 100%);
   max-width: 100%;
 }
 
@@ -148,27 +146,41 @@
 .lifeChart canvas {
   display: block;
   width: 100%;
+  max-width: 100%;
   border-radius: 6px;
+}
+
+@media (max-height: 940px) {
+  .lifeGame {
+    gap: 10px;
+    padding-top: 0;
+  }
+
+  .lifeStats {
+    gap: 10px;
+    font-size: 13px;
+  }
+
+  .lifeControls {
+    gap: 10px;
+  }
 }
 
 @media (max-width: 900px) {
   .lifeShell {
+    display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .lifeShellSpacer {
-    display: none;
+  .lifeGame {
+    grid-column: auto;
+    width: min(800px, 100%);
   }
 
   .lifeShellSide {
-    width: 800px;
-    max-width: 100%;
+    grid-column: auto;
+    width: min(800px, 100%);
     justify-content: flex-end;
-    order: 2;
-  }
-
-  .lifeGame {
-    order: 1;
   }
 }
