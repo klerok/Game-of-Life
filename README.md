@@ -1,3 +1,5 @@
+[![Maintainability](https://qlty.sh/gh/klerok/projects/Game-of-Life/maintainability.svg)](https://qlty.sh/gh/klerok/projects/Game-of-Life)
+
 # Game of Life
 
 ## Описание
@@ -29,4 +31,4 @@ npm run build
 
 ## Деплой
 
-🔗 [Деплой проекта](game-of-life-five-phi.vercel.app)
+🔗 [Деплой проекта](https://game-of-life-five-phi.vercel.app/)
