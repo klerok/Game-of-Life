@@ -16,9 +16,15 @@
 | **Backend**  | — (клиентское приложение)     |
 | **DB**       | — (`localStorage` в браузере) |
 
+## Требования
+
+- [Node.js](https://nodejs.org/) 18 или новее
+
 ## Запуск локально
 
 ```bash
+git clone https://github.com/klerok/Game-of-Life.git
+cd Game-of-Life
 npm install
 npm start
 ```
