@@ -1,6 +1,6 @@
 # Game of Life
 
-[![Maintainability](https://qlty.sh/gh/klerok/projects/Game-of-Life/maintainability.svg)](https://qlty.sh/gh/klerok/projects/Game-of-Life)
+## Описание
 
 Интерактивный симулятор **Conway's Game of Life** в браузере. Можно рисовать клетки на поле, запускать симуляцию, делать шаги по одному поколению и наблюдать динамику популяции на графике. Поддерживаются пресеты (glider, blinker и др.), несколько наборов правил и режимы сетки bounded / toroidal. Состояние игры сохраняется в `localStorage`.
 
@@ -29,8 +29,4 @@ npm run build
 
 ## Деплой
 
-🔗 [https://game-of-life-demo.example.com](https://game-of-life-demo.example.com) _(заглушка)_
-
-## TODO:
-
-Реализовать модальное окно с правилами игры и кнопку с возможностью повторного показа правил.
+🔗 [Деплой проекта](game-of-life-five-phi.vercel.app)
